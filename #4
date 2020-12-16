@@ -1,0 +1,57 @@
+import pygame                                                                                
+from pygame.draw import *                                                                    
+                                                                                             
+pygame.init()                                                                                
+                                                                                             
+FPS = 30                                                                                     
+screen = pygame.display.set_mode((1000, 1000))                                               
+black = (0,0,0)                                                                              
+blue = (169,238,255)                                                                         
+gray = (244,227,215)                                                                         
+green = (53,200,114)                                                                         
+pink = (255,85,221)                                                                          
+red = (255,2,0)                                                                              
+yellow = (255,204,1)                                                                         
+white = (255,255,255)                                                                        
+brown = (85,0,0)                                                                             
+helgray = (167,147,172)                                                                      
+rect(screen, blue, (0,0,1000,500)) # небо                                                    
+rect(screen, green, (0,500,1000,500)) # травушка                                             
+polygon(screen, pink, [[600,600], [700,300], [800,600]], 0) # платье девушки                 
+ellipse(screen, helgray, (220,330,160,280))                  # тело парня                    
+circle(screen, gray, (700,300), 50)                           # голова девушки               
+circle(screen,gray, (300,300), 50)                             # голова парня                
+line(screen, black, (250,360), (135,540))  # правая рука парня                               
+line(screen, black, (350,360), (470,540))   # левая рука парня                               
+line(screen, black, (250,580), (200,750))    # правая нога парня                             
+line(screen, black, (200,750), (150,750))     # правая ступня парня                          
+line(screen, black, (348,580), (400,750))       # левая нога парня                           
+line(screen, black, (400,750), (450,750))        # левая ступня парня                        
+line(screen, black, (680,360), (470,540))         # правая рука девушки                      
+line(screen, black, (720,360), (785,420))          # левая рука девушки до локтя             
+line(screen, black, (785,420), (830,370))           # левая рука девушки после локтя         
+line(screen, black, (815,420), (855,300))            # палочка от шарика                     
+line(screen, black, (660,600), (630,730))              # правая нога девушки                 
+line(screen, black, (730,600), (760,730))               # левая нога девушки                 
+line(screen, black, (630,730), (600,730))                # правая ступня девушки             
+line(screen, black, (760,730), (790,730))                  # левая ступня девушки            
+polygon(screen, yellow, [[150,540], [140,460], [70,505]], 0) # рожок от мороженого           
+circle(screen, red, (115,465), 20)   # красный шарик                                         
+circle(screen, brown, (84,484), 20)   # коричневый шарик                                     
+circle(screen, white, (87,450), 20)  # белый шарик                                           
+polygon(screen, red, [[855,300], [830,200], [930,230]], 0)  # часть шарика                   
+circle(screen, red, (858,200), 28)         # часть шарика                                    
+circle(screen, red, (908,213), 28)          # часть шарика                                   
+                                                                                             
+pygame.display.update()                                                                      
+clock = pygame.time.Clock()                                                                  
+finished = False                                                                             
+                                                                                             
+while not finished:                                                                          
+    clock.tick(FPS)                                                                          
+    for event in pygame.event.get():                                                         
+            if event.type == pygame.QUIT:                                                    
+                finished = True                                                              
+                                                                                             
+pygame.quit()                                                                                
+                                                                                             
