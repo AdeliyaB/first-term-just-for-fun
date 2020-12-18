@@ -3,7 +3,7 @@ from pygame.draw import *
 from random import randint
 pygame.init()
 
-FPS = 1
+FPS = 2
 screen = pygame.display.set_mode((1200, 900))
 
 RED = (255, 0, 0)
@@ -16,101 +16,79 @@ BLACK = (0, 0, 0)
 COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN]
 
 def new_ball():
-    global x, y, r
-    x = randint(100,1100)
-    y = randint(100,900)
-    r = randint(10,100)
+    '''рисует новый шарик '''
+    x = randint(100, 1100)
+    y = randint(100, 900)
+    r = randint(10, 100)
     color = COLORS[randint(0, 5)]
     circle(screen, color, (x, y), r)
-    pygame.display.update()
 
 pygame.display.update()
 clock = pygame.time.Clock()
 finished = False
-
 n = 0
 while not finished:
-    strike = False
+    goal = False
     clock.tick(FPS)
-    k = 0
+    m = 0
     new_ball()
-    q = x
-    w = y
-    e =r
-new_ball()
-screen.fill(BLACK)
-if strike == False:
-    while k <= 10 and strike == False:
-        q += randint(-10, 10)
-        w += randint(-10, 10)
-        e += randint(-10, 20)
-        x += randint(-10, 10)
-        y += randint(-10, 10)
-        r += randint(-10, 20)
-        if g == 0:
-            a += 20
-        if g == 1:
-            a -= 20
-        if h == 0:
-            s += 20
-        if h == 0:
-            s -= 20
-        color = COLORS[randint(0, 5)]
-        circle(screen, color, (x, y), r)
-        circle(screen, color, (q, w), e)
-        rect(screen, color, (a,s,d,f))
-        pygame.display.update()
-        screen.fill(BLACK)
-        time.sleep(0.1)
-
-        if x < 0:
-            x += 50
-        elif x > 1200:
-            x -= 50
-        elif y < 0:
-            y += 50
-        elif y > 1200:
-            y -= 50
-        elif r < 11:
-            r += 10
-        elif r > 30:
-            r -= 10
-        if q < 0:
-            q += 50
-        elif q > 1200:
-            q -= 50
-        elif w < 0:
-            w += 50
-        elif w > 1200:
-            w -= 50
-        elif e < 11:
-            e += 10
-        elif e > 30:
-            e -= 10
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                print(n)
-                finished = True
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    if (abs(event.pos[0] - x))^2 + (abs(event.pos[1] - y))^2 <= r:
-                        num += 1
-                        strike = True
-                    elif (abs(event.pos[0] - q))^2 + (abs(event.pos[1] - w))^2 <= e:
-                        num += 1
-                        strike = True
-                    elif event.pos[0] >= a and event.pos[0] <= a+d and event.pos[1] >= s and event.pos[1] <= s+f:
-                        num += 2
-                        strike = True
-        k += 1
-        t += 1
-if t >= 70:
-    finished = True
-    screen.fill(RED)
+    a = x
+    b = y
+    c = r
     pygame.display.update()
-    file = open("D:\leaderboard.txt", 'a')
-    file.write(str(name)+ ' - ' + str(num) + '\n')
-    file.close()
+    screen.fill(BLACK)
+    if goal == False:
+        while m <= 10 and goal == False:
+            a += randint(-10, 10)
+            b += randint(-10, 10)
+            c += randint(-10, 10)
+            x += randint(-10, 10)
+            y += randint(-10, 10)
+            r += randint(-10, 10)
+            color = COLORS[randint(0, 5)]
+            circle(screen, color, (x, y), r)
+            circle(screen, color, (a, b), c)
+            pygame.display.update()
+            screen.fill(BLACK)
+            time.sleep(0.3)
+            if x < 0:
+                x += 50
+            elif x > 1200:
+                x -= 50
+            elif y < 0:
+                y += 50
+            elif y > 1200:
+                y -= 50
+            elif r < 11:
+                r += 10
+            elif r > 30:
+                r -= 10
+            if a < 0:
+                a += 50
+            elif a > 1200:
+                a -= 50
+            elif b < 0:
+                b += 50
+            elif b > 1200:
+                b -= 50
+            elif c < 11:
+                c += 10
+            elif c > 30:
+                c -= 10
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    print(n)
+                    finished = True
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        if (abs(event.pos[0] - x)) ^ 2 + (abs(event.pos[1] - y)) ^ 2 <= r:
+                            n += 1
+                            goal = True
+                        elif (abs(event.pos[0] - q)) ^ 2 + (abs(event.pos[1] - w)) ^ 2 <= e:
+                            n += 1
+                            goal = True
+            m += 1
+    else:
+        break
 
 pygame.quit()
-
