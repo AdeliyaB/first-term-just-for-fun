@@ -1,0 +1,66 @@
+from random import randint
+import turtle 
+import numpy as np
+
+turtle.shape("circle")
+
+turtle.forward(300) 
+turtle.left(90) 
+turtle.forward(300) 
+turtle.left(90) 
+turtle.forward(300) 
+turtle.left(90) 
+turtle.forward(300) 
+turtle.left(90) 
+
+number_of_turtles = 20 
+steps_of_time_number = 300 
+pool = [turtle.Turtle() for i in range(number_of_turtles)] 
+for unit in pool: 
+    unit.penup() 
+    unit.speed(10)
+    unit.goto(randint(150,250), randint(150, 250)) 
+    unit.left(randint(0, 360))
+
+
+for i in range(steps_of_time_number):
+    turtle.shape("circle")
+    for unit in pool:
+        x = unit.xcor()
+        y = unit.ycor()
+        unit.forward(4)
+        if ((unit.xcor() > 300)or(unit.xcor() < 0))and(unit.ycor() == y):
+            unit.left(180)
+            unit.forward(7)
+        if ((unit.ycor() > 300)or(unit.ycor() < 0))and(unit.xcor() == x):
+            unit.left(180)
+            unit.forward(7)
+        if (unit.xcor() < 0) and (unit.ycor() > y):
+            unit.right(2*180/np.pi*np.arctan(np.abs((unit.ycor()-y)/(unit.xcor()-x))))
+            unit.forward(7)
+        if (unit.xcor() < 0) and (unit.ycor() < y):
+            unit.left(2*180/np.pi*np.arctan(np.abs((unit.ycor()-y)/(unit.xcor()-x))))
+            unit.forward(7)
+        if (unit.ycor() < 0) and (unit.xcor() < x):
+            unit.right(2*180/np.pi*np.arctan(np.abs((unit.xcor()-x)/(unit.ycor()-y))))
+            unit.forward(7)
+        if (unit.ycor() < 0) and (unit.xcor() > x):
+            unit.left(2*180/np.pi*np.arctan(np.abs((unit.xcor()-x)/(unit.ycor()-y))))
+            unit.forward(7)
+        if (unit.xcor() > 300) and (unit.ycor() > y):
+            unit.left(2*180/np.pi*np.arctan(np.abs((unit.ycor()-y)/(unit.xcor()-x))))
+            unit.forward(7)
+        if (unit.xcor() > 300) and (unit.ycor() < y):
+            unit.right(2*180/np.pi*np.arctan(np.abs((unit.ycor()-y)/(unit.xcor()-x))))
+            unit.forward(7)
+        if (unit.ycor() > 300) and (unit.xcor() < x):
+            unit.left(2*180/np.pi*np.arctan(np.abs((unit.xcor()-x)/(unit.ycor()-y))))
+            unit.forward(7)
+        if (unit.ycor() > 300) and (unit.xcor() > x):
+            unit.right(2*180/np.pi*np.arctan(np.abs((unit.xcor()-x)/(unit.ycor()-y))))
+            unit.forward(10)
+    for z in range(number_of_turtles):
+        for r in range(number_of_turtles):
+            if (np.abs(pool[z].xcor()-pool[r].xcor())<3) and (np.abs(pool[z].ycor()-pool[r].ycor())<3) and (r != z):
+                pool[z].left(180)
+                pool[r].left(180)
