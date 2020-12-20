@@ -1,2 +1,2 @@
-# infa_2020_biganyakova
+# first term just for fun
 it is the test project
